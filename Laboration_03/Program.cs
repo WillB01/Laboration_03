@@ -8,16 +8,34 @@ using System.Collections;
 
 namespace Laboration_03
 {
+    class Test
+    {
+        int _a;
+        string _b;
+
+        public Test(int a, string b)
+        {
+            _a = a;
+            _b = b;
+        }
+
+    }
+
+
     class Program
     {
         static List<string> adjektivList = new List<string>();
         static List<string> adverbList = new List<string>();
         static List<string> interjektionerList = new List<string>();
         static List<string> konjuktionerList = new List<string>();
+        static List<int> my = new List<int>();
+
+        static StringBuilder sb = new StringBuilder();
 
         static public int b;
-        static public Exception e;
-
+        
+      
+        
 
         static void Main(string[] args)
         {
@@ -25,14 +43,36 @@ namespace Laboration_03
 
 
 
+            bool loopTheProgram = true;
+          
+                Adjektiv();
+                Adverb();
+                Interjektioner();
+                Konjuktioner();
 
+                
+            while (loopTheProgram)
+            {
+                LoopsLists(ChooseWordClass());
+                ItemPickerFromWc();
+
+                Console.WriteLine("Print: y Add Words: n");
+                string user = Console.ReadLine();
+                if(user == "y")
+                {
+                    loopTheProgram = false;
+                    Console.WriteLine(sb);
+                }
+                else if(user == "n")
+                {
+                    loopTheProgram = true;
+                }
+                
+            }
            
-            Adjektiv();
-            Adverb();
-            Interjektioner();
-            Konjuktioner();
-
-            LoopsLists(ChooseWordClass());
+            
+            
+            
             
 
 
@@ -44,6 +84,87 @@ namespace Laboration_03
             Console.ReadLine();
         }
 
+
+        static void ItemPickerFromWc()
+        {
+            Console.WriteLine("Välj ett ord");
+            int hm = int.Parse(Console.ReadLine());
+
+            switch (hm)
+            {
+                case 1:
+                    sb.Append(adjektivList[0]);                  
+                    break;
+                case 2:
+                    sb.Append(adjektivList[1]);
+                    break;
+                case 3:
+                    sb.Append(adjektivList[2]);
+                    break;
+                case 4:
+                    sb.Append(adjektivList[3]);
+                    break;
+                case 5:
+                    sb.Append(adjektivList[4]);
+                    break;
+                case 6:
+                    sb.Append(adjektivList[5]);
+                    break;
+                case 7:
+                    sb.Append(adjektivList[6]);
+                    break;
+                case 8:
+                    sb.Append(adjektivList[7]);
+                    break;
+                case 9:
+                    sb.Append(adjektivList[8]);
+                    break;
+                case 10:
+                    sb.Append(adjektivList[9]);
+                    break;
+            }
+
+            /*switch (hm)
+            {
+                case 1:
+                    sb.Append(adverbList[0]);
+                    break;
+                case 2:
+                    sb.Append(adverbList[1]);
+                    break;
+                case 3:
+                    sb.Append(adverbList[2]);
+                    break;
+                case 4:
+                    sb.Append(adverbList[3]);
+                    break;
+                case 5:
+                    sb.Append(adverbList[4]);
+                    break;
+                case 6:
+                    sb.Append(adverbList[5]);
+                    break;
+                case 7:
+                    sb.Append(adverbList[6]);
+                    break;
+                case 8:
+                    sb.Append(adverbList[7]);
+                    break;
+                case 9:
+                    sb.Append(adverbList[8]);
+                    break;
+                case 10:
+                    sb.Append(adverbList[9]);
+                    break;
+            }
+
+
+    */
+
+
+
+
+            }
 
         static void LoopsLists(int k)
         {
@@ -57,6 +178,8 @@ namespace Laboration_03
                         Console.Write(adjektivList.IndexOf(item) + 1);
 
                         Console.WriteLine(": {0}", item);
+                        
+
                     }
                     break;
                 case 2:
@@ -129,7 +252,7 @@ namespace Laboration_03
        
         static void Adjektiv()
         {
-            adjektivList.Add("Röd");
+            adjektivList.Add("röd");
             adjektivList.Add("Gul");
             adjektivList.Add("Svart");
             adjektivList.Add("Stark");
@@ -139,7 +262,7 @@ namespace Laboration_03
             adjektivList.Add("Glad");
             adjektivList.Add("Arg");
             adjektivList.Add("Lesden");
-
+            
         }
 
         static void Adverb()
