@@ -8,19 +8,6 @@ using System.Collections;
 
 namespace Laboration_03
 {
-    class Test
-    {
-        int _a;
-        string _b;
-
-        public Test(int a, string b)
-        {
-            _a = a;
-            _b = b;
-        }
-
-    }
-
 
     class Program
     {
@@ -28,16 +15,14 @@ namespace Laboration_03
         static List<string> adverbList = new List<string>();
         static List<string> interjektionerList = new List<string>();
         static List<string> konjuktionerList = new List<string>();  
-        static WordClass myWc = new WordClass();
   
         static StringBuilder sb = new StringBuilder();
 
-        static public int b;
+        static public int checkListPick;
         static bool loopTheProgram = true;
-
-
-
-
+        
+        // // // // // // // // // // // // // // // // // // // // // // //
+        //Program start
         static void Main(string[] args)
         {
 
@@ -51,7 +36,7 @@ namespace Laboration_03
             {
                
                 LoopsLists(ChooseWordClass());
-                Console.WriteLine("\n^^^^^^^^^^^^");
+                Console.WriteLine("\n^^^^^^^^^^^^^");
                 ItemPickerFromWc();
                 UserWord();
 
@@ -69,42 +54,42 @@ namespace Laboration_03
 
             }
 
-
             Console.ReadLine();
         }
+        //Program End
+        // // // // // // // // // // // // // // // // // 
 
         static void UserWord() //Användarens egna ord
         {
             Console.Write("\nVill du lägga till egna ord?\n" +
                 "ja eller nej: ");   
             
-            string u = Console.ReadLine();
+            string userInputPersonalWord = Console.ReadLine();
            
-            if(u == "ja" || u == "j")
+            if(userInputPersonalWord == "ja" || userInputPersonalWord == "j")
             {
                 Console.WriteLine(" ");
                 string b = Console.ReadLine();
                 sb.Append(b + " ");
             }
-            else if(u == "nej" || u == "n" )
+            else if(userInputPersonalWord == "nej" || userInputPersonalWord == "n" )
             {
                 loopTheProgram = true;
-            }
-           
-            
-
+            }                      
         }
-
 
         static void ItemPickerFromWc() //väljer specifik ord från en ordklass
         {
+
             Console.Write("Välj ett ord: ");
-            int hm = int.Parse(Console.ReadLine());
-
-
-            if (b == 1)
+            try
             {
-                switch (hm)
+                
+            int userWordFromWc = int.Parse(Console.ReadLine());
+
+            if (checkListPick == 1)
+            {
+                switch (userWordFromWc)
                 {
                     case 1:
                         sb.Append(adjektivList[0]);
@@ -139,9 +124,9 @@ namespace Laboration_03
                 }
             }
 
-            else if (b == 2)
+            else if (checkListPick == 2)
             {
-                switch (hm)
+                switch (userWordFromWc)
                 {
                     case 1:
                         sb.Append(adverbList[0]);
@@ -174,12 +159,11 @@ namespace Laboration_03
                         sb.Append(adverbList[9]);
                         break;
                 }
-
             }
 
-            else if (b == 3)
+            else if (checkListPick == 3)
             {
-                switch (hm)
+                switch (userWordFromWc)
                 {
                     case 1:
                         sb.Append(interjektionerList[0]);
@@ -212,11 +196,10 @@ namespace Laboration_03
                         sb.Append(interjektionerList[9]);
                         break;
                 }
-
             }
-            else if (b == 4)
+            else if (checkListPick == 4)
             {
-                switch (hm)
+                switch (userWordFromWc)
                 {
                     case 1:
                         sb.Append(konjuktionerList[0]);
@@ -249,15 +232,16 @@ namespace Laboration_03
                         sb.Append(konjuktionerList[9]);
                         break;
                 }
-
             }
-
-
+            }
+            catch (Exception e)
+            {
+               Console.WriteLine(e.Message);              
+            }
         }
 
         static void LoopsLists(int k) //Går igenom alla listor
         {
-
             switch (k) // väljer vilken lista 
             {
                 case 1:
@@ -267,7 +251,6 @@ namespace Laboration_03
                         Console.Write("\n{0}",adjektivList.IndexOf(item) + 1);
 
                         Console.WriteLine(": {0}", item);
-
 
                     }
                     break;
@@ -298,11 +281,8 @@ namespace Laboration_03
                         Console.WriteLine(": {0}", item);
                     }
                     break;
-
             }
         }
-
-
 
         static int ChooseWordClass() //printar ut vilken ordklass användaren vill ha
                                    //Bestämmer också.
@@ -316,33 +296,23 @@ namespace Laboration_03
                 "Tryck: 3 - Interjektioner\n" +
                 "Tryck: 4 - Konjuktioner\n");
                Console.Write("\nSvar: ");
-               
-              
-
-            
-
+        
                 try //testar att det är en gilltig input
                 {
-                    b = int.Parse(Console.ReadLine());
+                    checkListPick = int.Parse(Console.ReadLine());
 
                 }
                 catch (Exception e) 
                 {
                     Console.WriteLine(e.Message); //fel meddelande
                 }
-                if (b == 1 || b == 2 || b == 3 || b == 4)
+                if (checkListPick == 1 || checkListPick == 2 || checkListPick == 3 || checkListPick == 4)
                 {
                     loopInput = false;
                 }
-
             }
-            return b;
-
-
-
-
+            return checkListPick;
         }
-
 
         static void Adjektiv()  //lägger in ord till listan kadjektivList
         {
@@ -357,7 +327,6 @@ namespace Laboration_03
             adjektivList.Add("Glad ");
             adjektivList.Add("Arg ");
             adjektivList.Add("Lesden ");
-
         }
 
         static void Adverb()  //lägger in ord till listan adverbList
@@ -372,9 +341,6 @@ namespace Laboration_03
             adverbList.Add("Ner ");
             adverbList.Add("Upp ");
             adverbList.Add("Efter ");
-
-
-
         }
 
         static void Interjektioner()  //lägger in ord till listan interjektionerList
@@ -389,9 +355,6 @@ namespace Laboration_03
             interjektionerList.Add("Ja ");
             interjektionerList.Add("Pang ");
             interjektionerList.Add("Fy ");
-
-
-
         }
         
         static void Konjuktioner() //lägger in ord till listan konjuktionerList
@@ -406,9 +369,6 @@ namespace Laboration_03
             konjuktionerList.Add("Att ");
             konjuktionerList.Add("När ");
             konjuktionerList.Add("Som ");
-
-
-
         }
 
     }
